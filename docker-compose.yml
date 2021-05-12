@@ -1,0 +1,7 @@
+version: '3' 
+
+services:
+    dropbox:
+      image: hillliu/dropbox-slim
+      volumes:
+      - ./Dropbox:/data/Dropbox
