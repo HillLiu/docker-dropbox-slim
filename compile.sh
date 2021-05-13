@@ -3,6 +3,7 @@
 DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 sourceImage=`${DIR}/support/sourceImage.sh`
 targetImage=`${DIR}/support/targetImage.sh`
+targetVersion=`${DIR}/support/targetVersion.sh`
 archiveFile=$DIR/archive.tar
 VERSION=`${DIR}/support/VERSION.sh`
 
@@ -13,10 +14,10 @@ list(){
 tag(){
   tag=$1
   if [ -z "$tag" ]; then
-    if [ -z "$VERSION" ]; then
+    if [ -z "$targetVersion" ]; then
       tag=latest
     else
-      tag=$VERSION
+      tag=$targetVersion
     fi
   fi
   echo "* <!-- Start to tag: ${tag}"
@@ -28,12 +29,12 @@ tag(){
 
 push(){
   if [ ! -z "$1" ]; then
-    VERSION=$1
+    targetVersion=$1
   fi  
-  if [ -z "$VERSION" ]; then
+  if [ -z "$targetVersion" ]; then
     tag=latest
   else
-    tag=$VERSION
+    tag=$targetVersion
   fi
   echo "* <!-- Start to push ${tag}"
   docker login
