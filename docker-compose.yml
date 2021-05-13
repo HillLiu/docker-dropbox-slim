@@ -4,4 +4,8 @@ services:
     dropbox:
       image: hillliu/dropbox-slim
       volumes:
-      - ./Dropbox:/data/Dropbox
+      - /etc/group:/etc/group:ro
+      - /etc/passwd:/etc/passwd:ro
+      - /tmp:/tmp
+      - ./:/data
+      user: "${MY_USER-65534:65534}"
