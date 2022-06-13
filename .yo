@@ -1,0 +1,4 @@
+repositoryName=docker-dropbox-slim
+repositoryOrgName=HillLiu
+dockerImageName=dropbox-slim
+dockerOrgName=hillliu
