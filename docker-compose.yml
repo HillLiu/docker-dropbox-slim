@@ -8,4 +8,5 @@ services:
       - /etc/passwd:/etc/passwd:ro
       - /tmp:/tmp
       - ./:/data
-      user: "${MY_USER-65534:65534}"
+      environment:
+        - DROPBOXUSER=${DROPBOXUSER-65534} 

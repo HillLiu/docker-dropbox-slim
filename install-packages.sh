@@ -4,7 +4,7 @@
 # Environment ${INSTALL_VERSION} pass from Dockerfile
 ###
 
-apt install -y supervisor
+apt install -y supervisor sudo
 
 
 #/* put your install code here */#
