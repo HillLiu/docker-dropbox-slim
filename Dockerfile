@@ -16,7 +16,7 @@ FROM python:${VERSION}-slim
 
 COPY --from=builder \
     /usr/local/.dropbox-dist \
-    /usr/local/dropbox-dist
+    /usr/local/.dropbox-dist
 
 COPY --from=builder \
     /usr/local/bin/dropbox \
@@ -36,7 +36,7 @@ RUN apt-get update \
 VOLUME ["/data"]
 
 ENV HOME=/data
-ENV PATH="/usr/local/dropbox-dist:${PATH}"
+ENV PATH="/usr/local/.dropbox-dist:${PATH}"
 WORKDIR /data
 
 ENTRYPOINT ["supervisord"]

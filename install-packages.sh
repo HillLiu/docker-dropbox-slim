@@ -11,7 +11,6 @@ apt install -qq -y --no-install-recommends supervisor sudo
 
 mkdir /data \
   && chmod 0755 /usr/local/bin/dropbox \
-  && usermod --shell /bin/bash nobody \
   && chmod 0777 /data
 
 # Prevent automatic updates
