@@ -4,14 +4,7 @@
 # Environment ${INSTALL_VERSION} pass from Dockerfile
 ###
 
-INSTALL="libglib2.0-0 libglapi-mesa libxext-dev libxdamage1 libxcb-glx0 libxcb-dri2-0 libxcb-dri3-0 libxcb-present0 libxcb-sync1 libxshmfence1 libxxf86vm1"
-
-echo "###"
-echo "# Will install"
-echo "###"
-echo ""
-echo $INSTALL
-echo ""
+apt install -y supervisor
 
 
 #/* put your install code here */#
