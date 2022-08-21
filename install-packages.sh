@@ -14,7 +14,7 @@ mkdir /data \
   && chmod 0777 /data
 
 # Prevent automatic updates
-install -dm0 /data/.dropbox-dist
+# install -dm0 /data/.dropbox-dist
 
 # Clean
 apt-get clean autoclean
