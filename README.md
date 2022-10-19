@@ -11,3 +11,8 @@
 ## Docker hub
    * hillliu/dropbox-slim 
    * https://hub.docker.com/r/hillliu/dropbox-slim
+
+## Enter shell
+```sh
+docker run --rm --entrypoint sh -it hillliu/dropbox-slim
+```
