@@ -9,4 +9,4 @@ services:
       - /tmp:/tmp
       - ./:/data
       environment:
-        - DROPBOXUSER=${DROPBOXUSER-65534} 
+        - DROPBOXUSER=${DROPBOXUSER-#65534} 
