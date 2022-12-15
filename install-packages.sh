@@ -6,15 +6,11 @@
 
 apt install -qq -y --no-install-recommends supervisor sudo
 
-
 #/* put your install code here */#
 
 mkdir /data \
   && chmod 0755 /usr/local/bin/dropbox \
   && chmod 0777 /data
-
-# Prevent automatic updates
-# install -dm0 /data/.dropbox-dist
 
 # Clean
 apt-get clean autoclean

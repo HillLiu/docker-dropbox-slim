@@ -8,10 +8,13 @@ RUN apt-get update && \
     apt-get install -qq -y --no-install-recommends \
     wget
 
+# https://www.dropbox.com/download?plat=lnx.x86_64 
+ARG DROPBOX_DL=https://clientupdates.dropboxstatic.com/dbx-releng/client/dropbox-lnx.x86_64-162.4.5419.tar.gz
+ARG DROPBOX_PY="https://www.dropbox.com/download?dl=packages/dropbox.py"
+
 RUN cd /usr/local \
-  && echo "20221215" \
-  && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf - \
-  && wget -O /usr/local/bin/dropbox "https://www.dropbox.com/download?dl=packages/dropbox.py"
+  && wget -O - "${DROPBOX_DL}" | tar xzf - \
+  && wget -O /usr/local/bin/dropbox "${DROPBOX_PY}"
 
 FROM python:${VERSION}-slim
 
@@ -30,6 +33,9 @@ COPY ./install-packages.sh /usr/local/bin/install-packages
 RUN apt-get update \
   && INSTALL_VERSION=$VERSION install-packages \
   && rm /usr/local/bin/install-packages;
+
+# Prevent automatic updates
+RUN install -dm0 /data/.dropbox-dist
 
 # https://wiki.archlinux.org/title/dropbox
 # ~/.dropbox - Dropbox's configuration directory
