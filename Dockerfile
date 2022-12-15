@@ -9,6 +9,7 @@ RUN apt-get update && \
     wget
 
 RUN cd /usr/local \
+  && echo "20221215" \
   && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf - \
   && wget -O /usr/local/bin/dropbox "https://www.dropbox.com/download?dl=packages/dropbox.py"
 
