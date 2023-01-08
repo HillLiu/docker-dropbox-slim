@@ -2,7 +2,7 @@
 
 # docker entrypoint script
 server() {
-  tail -f /entrypoint.sh
+  supervisord -c /etc/supervisord.conf
 }
 
 if [ "$1" = 'server' ]; then
