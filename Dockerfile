@@ -41,7 +41,7 @@ RUN install -dm0 /data/.dropbox-dist
 VOLUME ["/data"]
 
 ENV HOME=/data
-ENV PATH="/usr/local/.dropbox-dist:${PATH}"
+ENV PATH="/data/.dropbox-dist:/usr/local/.dropbox-dist:${PATH}"
 WORKDIR /data
 
 COPY ./docker/entrypoint.sh /entrypoint.sh
