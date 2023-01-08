@@ -74,4 +74,4 @@ workflows:
             - test
           matrix:
             parameters:
-              docker-tag: ["3.8"]
+              docker-tag: ["3.11"]
