@@ -16,7 +16,7 @@ RUN cd /usr/local \
   && wget -O - "${DROPBOX_DL}" | tar xzf - \
   && wget -O /usr/local/bin/dropbox "${DROPBOX_PY}"
 
-FROM python:${VERSION}-slim
+FROM --platform=linux/x86_64 python:${VERSION}-slim
 
 COPY --from=builder \
     /usr/local/.dropbox-dist \
