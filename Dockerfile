@@ -26,8 +26,6 @@ COPY --from=builder \
     /usr/local/bin/dropbox \
     /usr/local/bin/
 
-COPY ./supervisord.conf /etc/supervisord.conf
-
 # package 
 COPY ./install-packages.sh /usr/local/bin/install-packages
 RUN apt-get update \
@@ -46,5 +44,7 @@ ENV HOME=/data
 ENV PATH="/usr/local/.dropbox-dist:${PATH}"
 WORKDIR /data
 
-ENTRYPOINT ["supervisord"]
-CMD ["-c", "/etc/supervisord.conf"]
+COPY ./docker/entrypoint.sh /entrypoint.sh
+COPY ./docker/supervisord.conf /etc/
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["server"]

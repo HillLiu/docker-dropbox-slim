@@ -1,5 +1,5 @@
 archive.tar
 .*.sw?
-ver-*
+/v*-
 .dropbox
 Dropbox
