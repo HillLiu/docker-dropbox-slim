@@ -25,7 +25,7 @@ func TestSmoke(t *testing.T) {
 	docker.Build(t, "../", buildOptions)
 
 	// website::tag::3:: Run the Docker image.
-	opts := &docker.RunOptions{Command: []string{"ls", "/"}}
+	opts := &docker.RunOptions{Command: []string{"dropbox", "version"}}
 	output := docker.Run(t, tag, opts)
-	assert.Contains(t, output, "etc")
+	assert.Contains(t, output, "Dropbox daemon version")
 }
