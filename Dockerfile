@@ -10,7 +10,7 @@ RUN apt-get update && \
 
 # https://www.dropbox.com/download?plat=lnx.x86_64 
 ARG DROPBOX_DL=https://clientupdates.dropboxstatic.com/dbx-releng/client/dropbox-lnx.x86_64-162.4.5419.tar.gz
-ARG DROPBOX_PY="https://www.dropbox.com/download?dl=packages/dropbox.py"
+ARG DROPBOX_PY="https://linux.dropbox.com/packages/dropbox.py"
 
 RUN cd /usr/local \
   && wget -O - "${DROPBOX_DL}" | tar xzf - \
