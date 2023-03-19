@@ -4,11 +4,11 @@ FROM python:${VERSION}-slim as builder
 
 ARG VERSION
 
-RUN apt-get update && \
-    apt-get install -qq -y --no-install-recommends \
+RUN apt-get update \
+  && apt-get install -qq -y --no-install-recommends \
     wget
 
-# https://www.dropbox.com/download?plat=lnx.x86_64 
+# https://www.dropbox.com/download?plat=lnx.x86_64
 ARG DROPBOX_DL=https://www.dropbox.com/download?plat=lnx.x86_64
 
 RUN cd /usr/local \
@@ -20,17 +20,16 @@ RUN cd /usr/local \
 FROM --platform=linux/x86_64 python:${VERSION}-slim
 
 COPY --from=builder \
-    /usr/local/.dropbox-dist \
-    /usr/local/.dropbox-dist
+  /usr/local/.dropbox-dist \
+  /usr/local/.dropbox-dist
 
-# package 
+# package
 COPY ./install-packages.sh /usr/local/bin/install-packages
 RUN apt-get update \
   && INSTALL_VERSION=$VERSION install-packages \
-  && rm /usr/local/bin/install-packages;
+  && rm /usr/local/bin/install-packages
 
 # Prevent automatic updates
-COPY ./dropbox.py /usr/local/bin/dropbox
 RUN install -dm0 /data/.dropbox-dist
 
 # https://wiki.archlinux.org/title/dropbox
@@ -42,6 +41,7 @@ ENV HOME=/data
 ENV PATH="/data/.dropbox-dist:/usr/local/.dropbox-dist:${PATH}"
 WORKDIR /data
 
+COPY ./docker/dropbox.py /usr/local/bin/dropbox
 COPY ./docker/entrypoint.sh /entrypoint.sh
 COPY ./docker/supervisord.conf /etc/
 ENTRYPOINT ["/entrypoint.sh"]
