@@ -13,8 +13,9 @@ ARG DROPBOX_DL=https://www.dropbox.com/download?plat=lnx.x86_64
 ARG DROPBOX_PY="https://linux.dropbox.com/packages/dropbox.py"
 
 RUN cd /usr/local \
-  && wget -O - "${DROPBOX_DL}" | tar xzf - \
-  && wget -O /usr/local/bin/dropbox "${DROPBOX_PY}"
+  && wget -O - "${DROPBOX_DL}" | tar xzf -
+
+RUN wget -O /usr/local/bin/dropbox "${DROPBOX_PY}"
 
 FROM --platform=linux/x86_64 python:${VERSION}-slim
 
