@@ -3,3 +3,4 @@ archive.tar
 /v*-
 .dropbox
 Dropbox
+.DS_Store

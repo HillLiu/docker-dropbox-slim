@@ -10,22 +10,18 @@ RUN apt-get update && \
 
 # https://www.dropbox.com/download?plat=lnx.x86_64 
 ARG DROPBOX_DL=https://www.dropbox.com/download?plat=lnx.x86_64
-ARG DROPBOX_PY="https://linux.dropbox.com/packages/dropbox.py"
 
 RUN cd /usr/local \
   && wget -O - "${DROPBOX_DL}" | tar xzf -
 
-RUN wget -O /usr/local/bin/dropbox "${DROPBOX_PY}"
+# ARG DROPBOX_PY="https://linux.dropbox.com/packages/dropbox.py"
+# RUN wget -O /usr/local/bin/dropbox "${DROPBOX_PY}"
 
 FROM --platform=linux/x86_64 python:${VERSION}-slim
 
 COPY --from=builder \
     /usr/local/.dropbox-dist \
     /usr/local/.dropbox-dist
-
-COPY --from=builder \
-    /usr/local/bin/dropbox \
-    /usr/local/bin/
 
 # package 
 COPY ./install-packages.sh /usr/local/bin/install-packages
@@ -34,6 +30,7 @@ RUN apt-get update \
   && rm /usr/local/bin/install-packages;
 
 # Prevent automatic updates
+COPY ./dropbox.py /usr/local/bin/dropbox
 RUN install -dm0 /data/.dropbox-dist
 
 # https://wiki.archlinux.org/title/dropbox
