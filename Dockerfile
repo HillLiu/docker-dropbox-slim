@@ -37,8 +37,9 @@ RUN install -dm0 /data/.dropbox-dist
 # ~/Dropbox - Dropbox's download directory (default)
 VOLUME ["/data"]
 
-ENV HOME=/data
-ENV PATH="/data/.dropbox-dist:/usr/local/.dropbox-dist:${PATH}"
+ENV HOME=/data \
+  PATH="/data/.dropbox-dist:/usr/local/.dropbox-dist:${PATH}" \
+  DROPBOXUSER="#65534"
 WORKDIR /data
 
 COPY ./docker/bin/dropbox.py /usr/local/bin/dropbox
