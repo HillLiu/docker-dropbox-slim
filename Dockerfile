@@ -41,8 +41,8 @@ ENV HOME=/data
 ENV PATH="/data/.dropbox-dist:/usr/local/.dropbox-dist:${PATH}"
 WORKDIR /data
 
-COPY ./docker/dropbox.py /usr/local/bin/dropbox
+COPY ./docker/bin/dropbox.py /usr/local/bin/dropbox
+COPY ./docker/etc /etc/
 COPY ./docker/entrypoint.sh /entrypoint.sh
-COPY ./docker/supervisord.conf /etc/
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["server"]
