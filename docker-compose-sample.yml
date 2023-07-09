@@ -1,12 +1,12 @@
-version: '3' 
+version: "3"
 
 services:
-    dropbox:
-      image: hillliu/dropbox-slim
-      volumes:
+  dropbox:
+    image: hillliu/dropbox-slim
+    volumes:
       - /etc/group:/etc/group:ro
       - /etc/passwd:/etc/passwd:ro
       - /tmp:/tmp
       - ./:/data
-      environment:
-        - DROPBOXUSER=${DROPBOXUSER-#65534} 
+    environment:
+      - DROPBOXUSER=${DROPBOXUSER:-#65534}

@@ -39,7 +39,7 @@ VOLUME ["/data"]
 
 ENV HOME=/data \
   PATH="/data/.dropbox-dist:/usr/local/.dropbox-dist:${PATH}" \
-  DROPBOXUSER="#65534"
+  DROPBOXUSER=${DROPBOXUSER:-#65534}
 WORKDIR /data
 
 COPY ./docker/bin/dropbox.py /usr/local/bin/dropbox
