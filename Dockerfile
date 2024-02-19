@@ -39,6 +39,7 @@ VOLUME ["/data"]
 
 ENV HOME=/data \
   PATH="/data/.dropbox-dist:/usr/local/.dropbox-dist:${PATH}" \
+  DROPBOXD_PATH=/usr/local/.dropbox-dist/dropboxd \
   DROPBOXUSER=${DROPBOXUSER:-#65534}
 WORKDIR /data
 
