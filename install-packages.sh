@@ -4,7 +4,7 @@
 # Environment ${INSTALL_VERSION} pass from Dockerfile
 ###
 
-apt install -qq -y --no-install-recommends supervisor sudo
+apt install -qq -y --no-install-recommends supervisor sudo iproute2
 
 #/* put your install code here */#
 
