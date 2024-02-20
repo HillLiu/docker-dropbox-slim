@@ -8,9 +8,14 @@ apt install -qq -y --no-install-recommends supervisor sudo iproute2 procps pytho
 
 #/* put your install code here */#
 
-mkdir /data \
+rm -rf /data \
+  && mkdir /data \
+  && ln -s /usr/local/.dropbox-dist /data/.dropbox-dist \
   && chmod 0755 /usr/local/bin/dropbox \
-  && chmod 0777 /data
+  && chmod 0777 -R /data || exit 2 
+
+# Prevent automatic updates
+# install -dm0 /data/.dropbox-dist || exit 1 
 
 # Clean
 apt-get clean autoclean

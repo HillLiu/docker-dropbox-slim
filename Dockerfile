@@ -24,13 +24,11 @@ COPY --from=builder \
   /usr/local/.dropbox-dist
 
 # package
+COPY ./docker/bin/dropbox.py /usr/local/bin/dropbox
 COPY ./install-packages.sh /usr/local/bin/install-packages
 RUN apt-get update \
   && INSTALL_VERSION=$VERSION install-packages \
   && rm /usr/local/bin/install-packages
-
-# Prevent automatic updates
-RUN install -dm0 /data/.dropbox-dist
 
 # https://wiki.archlinux.org/title/dropbox
 # ~/.dropbox - Dropbox's configuration directory
@@ -39,11 +37,9 @@ VOLUME ["/data"]
 
 ENV HOME=/data \
   PATH="/data/.dropbox-dist:/usr/local/.dropbox-dist:${PATH}" \
-  DROPBOXD_PATH=/usr/local/.dropbox-dist/dropboxd \
   DROPBOXUSER=${DROPBOXUSER:-#65534}
 WORKDIR /data
 
-COPY ./docker/bin/dropbox.py /usr/local/bin/dropbox
 COPY ./docker/etc /etc/
 COPY ./docker/entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
