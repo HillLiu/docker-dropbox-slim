@@ -33,7 +33,7 @@ RUN apt-get update \
 # https://wiki.archlinux.org/title/dropbox
 # ~/.dropbox - Dropbox's configuration directory
 # ~/Dropbox - Dropbox's download directory (default)
-VOLUME ["/data"]
+VOLUME ["/data", "/usr/local/.dropbox-dist"]
 
 ENV HOME=/data \
   PATH="/usr/local/.dropbox-dist:${PATH}" \
