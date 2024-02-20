@@ -24,7 +24,7 @@ COPY --from=builder \
   /usr/local/.dropbox-dist
 
 # package
-COPY ./docker/bin/dropbox.py /usr/local/bin/dropbox
+COPY ./docker/sbin /usr/local/sbin
 COPY ./install-packages.sh /usr/local/bin/install-packages
 RUN apt-get update \
   && INSTALL_VERSION=$VERSION install-packages \
@@ -41,6 +41,5 @@ ENV HOME=/data \
 WORKDIR /data
 
 COPY ./docker/etc /etc/
-COPY ./docker/entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
 CMD ["server"]

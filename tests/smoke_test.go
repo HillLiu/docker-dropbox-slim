@@ -19,6 +19,10 @@ func TestSmoke(t *testing.T) {
 	buildOptions := &docker.BuildOptions{
 		Tags:      []string{tag},
 		BuildArgs: []string{fmt.Sprintf("VERSION=%s", bytes.TrimRight(VERSION, "\n"))},
+		OtherOptions: []string{
+			"--pull",
+			"--no-cache",
+		},
 	}
 
 	// website::tag::2:: Build the Docker image.
