@@ -36,7 +36,7 @@ RUN apt-get update \
 VOLUME ["/data"]
 
 ENV HOME=/data \
-  PATH="/data/.dropbox-dist:/usr/local/.dropbox-dist:${PATH}" \
+  PATH="/usr/local/.dropbox-dist:${PATH}" \
   DROPBOXUSER=${DROPBOXUSER:-#65534}
 WORKDIR /data
 

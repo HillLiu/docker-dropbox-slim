@@ -2,5 +2,5 @@ archive.tar
 .*.sw?
 /v*-
 .dropbox
-Dropbox
+/Dropbox
 .DS_Store

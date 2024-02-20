@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash 
 
 trap "stop; exit 0;" SIGTERM SIGINT TERM
 trap "reload" USR2
