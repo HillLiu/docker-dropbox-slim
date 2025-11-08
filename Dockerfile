@@ -1,6 +1,6 @@
 ARG VERSION=${VERSION:-[VERSION]}
 
-FROM python:${VERSION}-slim as builder
+FROM python:${VERSION}-slim-bookworm as builder
 
 ARG VERSION
 
