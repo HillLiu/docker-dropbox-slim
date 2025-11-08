@@ -1,6 +1,6 @@
 ARG VERSION=${VERSION:-[VERSION]}
 
-FROM python:${VERSION}-slim-bookworm as builder
+FROM python:${VERSION}-slim-bookworm AS builder
 
 ARG VERSION
 
@@ -17,7 +17,7 @@ RUN cd /usr/local \
 # ARG DROPBOX_PY="https://linux.dropbox.com/packages/dropbox.py"
 # RUN wget -O /usr/local/bin/dropbox "${DROPBOX_PY}"
 
-FROM --platform=linux/x86_64 python:${VERSION}-slim
+FROM --platform=linux/x86_64 python:${VERSION}-slim-bookworm
 
 COPY --from=builder \
   /usr/local/.dropbox-dist \
@@ -37,7 +37,7 @@ VOLUME ["/data"]
 
 ENV HOME=/data \
   PATH="/usr/local/.dropbox-dist:${PATH}" \
-  DROPBOXUSER=${DROPBOXUSER:-#65534}
+  DROPBOXUSER=#65534
 WORKDIR /data
 
 COPY ./docker/etc /etc/
